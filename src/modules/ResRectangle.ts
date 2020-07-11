@@ -1,4 +1,3 @@
-import game from 'natives';
 import Point from "../utils/Point";
 import Size from "../utils/Size";
 import Rectangle from "./Rectangle";
@@ -33,6 +32,6 @@ export default class ResRectangle extends Rectangle {
         const x = (pos as Point).X / width + w * 0.5;
         const y = (pos as Point).Y / height + h * 0.5;
 
-        game.drawRect(x, y, w, h, color.R, color.G, color.B, color.A, false);
+        DrawRect(x, y, w, h, color.R, color.G, color.B, color.A);
 	}
 }

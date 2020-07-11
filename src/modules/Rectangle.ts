@@ -1,4 +1,3 @@
-import game from 'natives';
 import Color from "../utils/Color";
 import Point from "../utils/Point";
 import Size from "../utils/Size";
@@ -29,6 +28,6 @@ export default class Rectangle extends IElement {
         const x = (pos as Point).X / 1280.0 + w * 0.5;
         const y = (pos as Point).Y / 720.0 + h * 0.5;
 
-        game.drawRect(x, y, w, h, color.R, color.G, color.B, color.A, false);
+        DrawRect(x, y, w, h, color.R, color.G, color.B, color.A);
 	}
 }

@@ -20,7 +20,7 @@ export default {
         file(false),
         file(true)
     ],
-    external: ["alt-client", "natives"],
+    external: ["@citizenfx/client"],
     plugins: [
         typescript({useTsconfigDeclarationDir: true, abortOnError: false})
     ]

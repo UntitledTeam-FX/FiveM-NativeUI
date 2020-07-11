@@ -1,4 +1,3 @@
-import game from 'natives';
 export default class InstructionalButton {
     constructor(text, control, buttonString = null) {
         this._itemBind = null;
@@ -12,6 +11,6 @@ export default class InstructionalButton {
         this._itemBind = item;
     }
     GetButtonId() {
-        return this._usingControls ? game.getControlInstructionalButton(2, this._buttonControl, false) : "t_" + this._buttonString;
+        return this._usingControls ? GetControlInstructionalButton(2, this._buttonControl, false) : "t_" + this._buttonString;
     }
 }

@@ -1,4 +1,3 @@
-import * as alt from 'alt-client';
 import Font from "../enums/Font";
 import Alignment from "../enums/Alignment";
 import ResText from "../modules/ResText";
@@ -16,10 +15,10 @@ export default class UIMenuDynamicListItem extends UIMenuItem {
         this._selectedStartValueHandler = null;
         this.SelectionChangeHandler = null;
         if (!this.isVariableFunction(selectionChangeHandler)) {
-            alt.logError(`[UIMenuDynamicListItem] ${text} is not created with a valid selectionChangeHandler, needs to be function. Please see docs.`);
+            console.log(`[UIMenuDynamicListItem] ${text} is not created with a valid selectionChangeHandler, needs to be function. Please see docs.`);
         }
         if (!this.isVariableFunction(selectedStartValueHandler)) {
-            alt.logError(`[UIMenuDynamicListItem] ${text} is not created with a valid selectedStartValueHandler, needs to be function. Please see docs.`);
+            console.log(`[UIMenuDynamicListItem] ${text} is not created with a valid selectedStartValueHandler, needs to be function. Please see docs.`);
         }
         this.SelectionChangeHandler = selectionChangeHandler;
         this._selectedStartValueHandler = selectedStartValueHandler;

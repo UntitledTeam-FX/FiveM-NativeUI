@@ -1,4 +1,3 @@
-import * as alt from 'alt-client';
 import BadgeStyle from "../enums/BadgeStyle";
 import Font from "../enums/Font";
 import Alignment from "../enums/Alignment";
@@ -62,10 +61,10 @@ export default class UIMenuDynamicListItem extends UIMenuItem {
         super(text, description, data);
 
         if (!this.isVariableFunction(selectionChangeHandler)) {
-            alt.logError(`[UIMenuDynamicListItem] ${text} is not created with a valid selectionChangeHandler, needs to be function. Please see docs.`);
+            console.log(`[UIMenuDynamicListItem] ${text} is not created with a valid selectionChangeHandler, needs to be function. Please see docs.`);
         }
         if (!this.isVariableFunction(selectedStartValueHandler)) {
-            alt.logError(`[UIMenuDynamicListItem] ${text} is not created with a valid selectedStartValueHandler, needs to be function. Please see docs.`);
+            console.log(`[UIMenuDynamicListItem] ${text} is not created with a valid selectedStartValueHandler, needs to be function. Please see docs.`);
         }
 
         this.SelectionChangeHandler = selectionChangeHandler;

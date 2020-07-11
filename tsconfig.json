@@ -1,6 +1,10 @@
 {
     "compilerOptions": {
       "target": "ESNext",
+      "baseUrl": ".",
+      "paths": {
+        "*": ["types/*"]
+      },
       "module": "ESNext",
       "moduleResolution": "Node",
       "declaration": true,
@@ -9,7 +13,7 @@
       "allowSyntheticDefaultImports": true,
       "removeComments": true,
       "sourceMap": false,
-      "typeRoots": ["./node_modules/@types", "./node_modules/@altv"],
+      "types": ["@citizenfx/client", "@types/node"],
       "noUnusedLocals": true,
       "noUnusedParameters": false,
       "noImplicitReturns": true,

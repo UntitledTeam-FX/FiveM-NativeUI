@@ -1,11 +1,10 @@
-﻿import * as alt from 'alt-client';
-import Scaleform from '../utils/Scaleform';
+﻿import Scaleform from '../utils/Scaleform';
 
 export default class Message {
     private static _messageVisible: boolean = false;
-    private static _transitionOutTimeout: number = null;
-    private static _transitionOutFinishedTimeout: number = null;
-    private static _delayedTransitionInTimeout: number = null;
+    private static _transitionOutTimeout: NodeJS.Timeout = null;
+    private static _transitionOutFinishedTimeout: NodeJS.Timeout = null;
+    private static _delayedTransitionInTimeout: NodeJS.Timeout = null;
     private static _scaleform: Scaleform = null;
     private static _transitionOutTimeMs: number = 500;
     private static _transitionOutAnimName: string = null;
@@ -26,14 +25,14 @@ export default class Message {
     private static Load() {
         //Make sure there is no delayed transition existing
         if (this._delayedTransitionInTimeout != null) {
-            alt.clearTimeout(this._delayedTransitionInTimeout);
+            clearTimeout(this._delayedTransitionInTimeout);
             this._delayedTransitionInTimeout = null;
         }
     }
 
     //Delayed transition is needed when transition out got played before, this is the case when bigmessage is called before other one is finished showing.
     private static SetDelayedTransition(messageHandler: { (): void }, time: number) {
-        this._delayedTransitionInTimeout = alt.setTimeout(() => {
+        this._delayedTransitionInTimeout = setTimeout(() => {
             this._delayedTransitionInTimeout = null;
             this.TransitionIn(messageHandler, time);
         }, this._transitionOutTimeMs);
@@ -60,15 +59,15 @@ export default class Message {
         if (!this._messageVisible)
             return;
         if (this._transitionOutTimeout != null) {
-            alt.clearTimeout(this._transitionOutTimeout);
+            clearTimeout(this._transitionOutTimeout);
             this._transitionOutTimeout = null;
         }
         if (this._transitionOutFinishedTimeout != null) {
-            alt.clearTimeout(this._transitionOutFinishedTimeout);
+            clearTimeout(this._transitionOutFinishedTimeout);
             this._transitionOutFinishedTimeout = null;
         }
         this._scaleform.callFunction(this._transitionOutAnimName);
-        this._transitionOutFinishedTimeout = alt.setTimeout(() => {
+        this._transitionOutFinishedTimeout = setTimeout(() => {
             this._messageVisible = false;
             this._scaleform.recreate();
         }, this._transitionOutTimeMs);
@@ -81,7 +80,7 @@ export default class Message {
     }
 
     private static SetTransitionOutTimer(time: number) {
-        this._transitionOutTimeout = alt.setTimeout(() => {
+        this._transitionOutTimeout = setTimeout(() => {
             this._transitionOutTimeout = null;
             this.TransitionOut();
         }, time);

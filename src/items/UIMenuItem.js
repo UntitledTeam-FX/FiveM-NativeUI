@@ -1,4 +1,3 @@
-import * as alt from 'alt-client';
 import BadgeStyle from "../enums/BadgeStyle";
 import Font from "../enums/Font";
 import Alignment from "../enums/Alignment";
@@ -57,7 +56,7 @@ export default class UIMenuItem {
     }
     fireEvent() {
         if (this._event) {
-            alt.emit(this._event.event, ...this._event.args);
+            // alt.emit(this._event.event, ...this._event.args);
         }
     }
     Draw() {

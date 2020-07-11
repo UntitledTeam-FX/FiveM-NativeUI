@@ -1,9 +1,8 @@
-import * as alt from 'alt-client';
 import Message from './Message';
 export default class BigMessage extends Message {
     static Initialize(scaleForm, transitionOutAnimName) {
         super.Initialize(scaleForm, transitionOutAnimName);
-        alt.everyTick(() => this.Render());
+        setTick(() => this.Render());
     }
     static ShowMissionPassedMessage(msg, subtitle = "", time = 5000) {
         this.ShowCustomShard("SHOW_MISSION_PASSED_MESSAGE", time, msg, subtitle, 100, true, 0, true);

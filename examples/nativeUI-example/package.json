@@ -1,0 +1,20 @@
+{
+  "name": "nativeui-example",
+  "version": "1.0.0",
+  "repository": "https://github.com/PichotM/FiveM-NativeUI",
+  "author": "PichotM",
+  "scripts": {
+    "build": "webpack --mode production --config client.config.js",
+    "watch": "webpack --mode development --watch true --config client.config.js"
+  },
+  "license": "MIT",
+  "private": false,
+  "devDependencies": {
+    "@citizenfx/client": "^1.0.2692-1",
+    "@types/node": "^12.7.7",
+    "ts-loader": "^6.0.2",
+    "typescript": "^3.3.1",
+    "webpack": "^4.41.0",
+    "webpack-cli": "^3.3.2"
+  }
+}

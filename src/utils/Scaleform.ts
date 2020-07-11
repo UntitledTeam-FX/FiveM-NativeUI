@@ -1,13 +1,10 @@
-﻿import * as alt from 'alt-client';
-import * as game from 'natives';
-
-export default class Scaleform {
+﻿export default class Scaleform {
     private _handle: number = 0;
     private scaleForm: string;
 
     public constructor(scaleForm: string) {
         this.scaleForm = scaleForm;
-        this._handle = game.requestScaleformMovie(this.scaleForm);
+        this._handle = RequestScaleformMovie(this.scaleForm);
     }
 
     public get handle(): number {
@@ -19,40 +16,39 @@ export default class Scaleform {
     }
 
     public get isLoaded(): boolean {
-        return game.hasScaleformMovieLoaded(this._handle);
+        return HasScaleformMovieLoaded(this._handle) === 1;
     }
 
     private callFunctionHead(funcName: string, ...args: any[]): void {
         if (!this.isValid || !this.isLoaded)
             return;
 
-        game.beginScaleformMovieMethod(this._handle, funcName);
-        //alt.log("Running func head " + funcName + "(" + args + ") on " + this.handle + " (" + this.scaleForm + ")");
+        BeginScaleformMovieMethod(this._handle, funcName);
 
         args.forEach((arg: any) => {
             switch (typeof arg) {
                 case "number":
                     {
                         if (Number(arg) === arg && arg % 1 !== 0) {
-                            game.scaleformMovieMethodAddParamFloat(arg);
+                            ScaleformMovieMethodAddParamFloat(arg);
                         }
                         else {
-                            game.scaleformMovieMethodAddParamInt(arg);
+                            ScaleformMovieMethodAddParamInt(arg);
                         }
                     }
                 case "string":
                     {
-                        game.scaleformMovieMethodAddParamPlayerNameString(arg as string);
+                        ScaleformMovieMethodAddParamPlayerNameString(arg as string);
                         break;
                     }
                 case "boolean":
                     {
-                        game.scaleformMovieMethodAddParamBool(arg);
+                        ScaleformMovieMethodAddParamBool(arg);
                         break;
                     }
                 default:
                     {
-                        alt.logError(`Unknown argument type ${typeof arg} = ${arg.toString()} passed to scaleform with handle ${this._handle}`);
+                        console.log(`Unknown argument type ${typeof arg} = ${arg.toString()} passed to scaleform with handle ${this._handle}`);
                     }
             }
         });
@@ -60,31 +56,31 @@ export default class Scaleform {
 
     public callFunction(funcName: string, ...args: any[]): void {
         this.callFunctionHead(funcName, ...args);
-        game.endScaleformMovieMethod();
+        EndScaleformMovieMethod();
     }
 
     public callFunctionReturn(funcName: string, ...args: any[]): number {
         this.callFunctionHead(funcName, ...args);
-        return game.endScaleformMovieMethodReturnValue();
+        return EndScaleformMovieMethodReturnValue();
     }
 
     public render2D(): void {
         if (!this.isValid || !this.isLoaded)
             return;
-        game.drawScaleformMovieFullscreen(this._handle, 255, 255, 255, 255, 0);
+        DrawScaleformMovieFullscreen(this._handle, 255, 255, 255, 255, 0);
     }
 
     public recreate(): void {
         if (!this.isValid || !this.isLoaded)
             return;
-        game.setScaleformMovieAsNoLongerNeeded(this._handle);
-        this._handle = game.requestScaleformMovie(this.scaleForm);
+        SetScaleformMovieAsNoLongerNeeded(this._handle);
+        this._handle = RequestScaleformMovie(this.scaleForm);
     }
 
     public destroy(): void {
         if (!this.isValid)
             return;
-        game.setScaleformMovieAsNoLongerNeeded(this._handle);
+        SetScaleformMovieAsNoLongerNeeded(this._handle);
         this._handle = 0;
     }
 }

@@ -1,7 +1,7 @@
 {
-  "name": "@DurtyFree/altv-nativeui",
+  "name": "@PichotM/fivem-nativeui",
   "version": "1.4.4",
-  "description": "NativeUI for GTA V alt:V Multiplayer mod written in Javascript / TypeScript",
+  "description": "NativeUI for FiveM written in Javascript / TypeScript",
   "main": "dist/nativeui/nativeui.min.js",
   "types": "dist/nativeui/types/NativeUi.d.ts",
   "scripts": {
@@ -13,30 +13,19 @@
   ],
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/DurtyFree/alt-V-NativeUI.git"
+    "url": "git+https://github.com/PichotM/FiveM-NativeUI.git"
   },
   "keywords": [
-    "altv",
+    "fivem",
     "nativeui"
-  ],
-  "author": {
-    "name": "DurtyFree",
-    "url": "https://github.com/DurtyFree"
-  },
-  "maintainers": [
-    {
-      "name": "DurtyFree",
-      "url": "https://github.com/DurtyFree"
-    }
   ],
   "license": "Apache-2.0",
   "bugs": {
-    "url": "https://github.com/DurtyFree/alt-V-NativeUI/issues"
+    "url": "https://github.com/PichotM/FiveM-NativeUI/issues"
   },
-  "homepage": "https://github.com/DurtyFree/alt-V-NativeUI#readme",
+  "homepage": "https://github.com/PichotM/FiveM-NativeUI#readme",
   "devDependencies": {
-    "@altv/types-client": "^1.1.0",
-    "@altv/types-natives": "^1.1.0",
+    "@citizenfx/client": "^1.0.2692-1",
     "@types/node": "^14.0.11",
     "rollup": "^2.15.0",
     "rollup-plugin-terser": "^6.1.0",

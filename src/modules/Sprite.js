@@ -1,5 +1,3 @@
-import * as alt from 'alt-client';
-import game from 'natives';
 import Color from "../utils/Color";
 import Screen from "../utils/Screen";
 export default class Sprite {
@@ -17,10 +15,10 @@ export default class Sprite {
     }
     requestTextureDictPromise(textureDict) {
         return new Promise((resolve, reject) => {
-            game.requestStreamedTextureDict(textureDict, true);
-            let inter = alt.setInterval(() => {
-                if (game.hasStreamedTextureDictLoaded(textureDict)) {
-                    alt.clearInterval(inter);
+            RequestStreamedTextureDict(textureDict, true);
+            let inter = setInterval(() => {
+                if (HasStreamedTextureDictLoaded(textureDict)) {
+                    clearInterval(inter);
                     return resolve(true);
                 }
             }, 10);
@@ -35,7 +33,7 @@ export default class Sprite {
         return this._textureDict;
     }
     get IsTextureDictionaryLoaded() {
-        return game.hasStreamedTextureDictLoaded(this._textureDict);
+        return HasStreamedTextureDictLoaded(this._textureDict);
     }
     Draw(textureDictionary, textureName, pos, size, heading, color, loadTexture) {
         textureDictionary = textureDictionary || this.TextureDict;
@@ -46,8 +44,8 @@ export default class Sprite {
         color = color || this.Color;
         loadTexture = loadTexture || true;
         if (loadTexture) {
-            if (!game.hasStreamedTextureDictLoaded(textureDictionary))
-                game.requestStreamedTextureDict(textureDictionary, true);
+            if (!HasStreamedTextureDictLoaded(textureDictionary))
+                RequestStreamedTextureDict(textureDictionary, true);
         }
         const screenw = Screen.Width;
         const screenh = Screen.Height;
@@ -58,6 +56,6 @@ export default class Sprite {
         const h = this.Size.Height / height;
         const x = this.Pos.X / width + w * 0.5;
         const y = this.Pos.Y / height + h * 0.5;
-        game.drawSprite(textureDictionary, textureName, x, y, w, h, heading, color.R, color.G, color.B, color.A, true);
+        DrawSprite(textureDictionary, textureName, x, y, w, h, heading, color.R, color.G, color.B, color.A, true);
     }
 }

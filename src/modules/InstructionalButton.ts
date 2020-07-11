@@ -1,4 +1,3 @@
-import game from 'natives';
 import UIMenuItem from "../items/UIMenuItem";
 import Control from '../enums/Control';
 
@@ -34,6 +33,6 @@ export default class InstructionalButton {
     }
 
     public GetButtonId(): string {
-        return this._usingControls ? game.getControlInstructionalButton(2, this._buttonControl as number, false) : "t_" + this._buttonString;
+        return this._usingControls ? GetControlInstructionalButton(2, this._buttonControl as number, 0) : "t_" + this._buttonString;
     }
 }

@@ -1,6 +1,4 @@
-import * as alt from 'alt-client';
 import Alignment from "../enums/Alignment";
-import game from 'natives';
 import Color from "../utils/Color";
 import Point from "../utils/Point";
 import Size from "../utils/Size";
@@ -62,35 +60,33 @@ export default class ResText extends Text {
         const x = this.Pos.X / width;
         const y = this.Pos.Y / height;
 
-        game.setTextFont(parseInt(font as string));
-        game.setTextScale(1.0, scale);
-        game.setTextColour(color.R, color.G, color.B, color.A);
+        SetTextFont(parseInt(font as string));
+        SetTextScale(1.0, scale);
+        SetTextColour(color.R, color.G, color.B, color.A);
 
         if (centered !== undefined) {
-            game.setTextCentre(centered);
+            SetTextCentre(centered);
         } else {
-            if (dropShadow) game.setTextDropshadow(2, 0, 0, 0, 0);
-
-            if (outline) alt.logWarning("[NativeUI] ResText outline not working!");
+            if (dropShadow) SetTextDropshadow(2, 0, 0, 0, 0);
 
             switch (textAlignment) {
                 case Alignment.Centered:
-                    game.setTextCentre(true);
+                    SetTextCentre(true);
                     break;
                 case Alignment.Right:
-                    game.setTextRightJustify(true);
-                    game.setTextWrap(0.0, x);
+                    SetTextRightJustify(true);
+                    SetTextWrap(0.0, x);
                     break;
             }
 
             if (this.Wrap) {
                 const xsize = (this.Pos.X + this.Wrap) / width;
-                game.setTextWrap(x, xsize);
+                SetTextWrap(x, xsize);
             }
         }
 
-        game.beginTextCommandDisplayText("CELL_EMAIL_BCON");
+        BeginTextCommandDisplayText("CELL_EMAIL_BCON");
         Text.AddLongString(caption as string);
-        game.endTextCommandDisplayText(x, y, 0);
+        EndTextCommandDisplayText(x, y);
     }
 }

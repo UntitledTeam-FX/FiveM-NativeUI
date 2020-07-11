@@ -1,4 +1,3 @@
-import * as alt from 'alt-client';
 import Scaleform from '../utils/Scaleform';
 export default class Message {
     static Initialize(scaleForm, transitionOutAnimName) {
@@ -13,12 +12,12 @@ export default class Message {
     }
     static Load() {
         if (this._delayedTransitionInTimeout != null) {
-            alt.clearTimeout(this._delayedTransitionInTimeout);
+            clearTimeout(this._delayedTransitionInTimeout);
             this._delayedTransitionInTimeout = null;
         }
     }
     static SetDelayedTransition(messageHandler, time) {
-        this._delayedTransitionInTimeout = alt.setTimeout(() => {
+        this._delayedTransitionInTimeout = setTimeout(() => {
             this._delayedTransitionInTimeout = null;
             this.TransitionIn(messageHandler, time);
         }, this._transitionOutTimeMs);
@@ -42,15 +41,15 @@ export default class Message {
         if (!this._messageVisible)
             return;
         if (this._transitionOutTimeout != null) {
-            alt.clearTimeout(this._transitionOutTimeout);
+            clearTimeout(this._transitionOutTimeout);
             this._transitionOutTimeout = null;
         }
         if (this._transitionOutFinishedTimeout != null) {
-            alt.clearTimeout(this._transitionOutFinishedTimeout);
+            clearTimeout(this._transitionOutFinishedTimeout);
             this._transitionOutFinishedTimeout = null;
         }
         this._scaleform.callFunction(this._transitionOutAnimName);
-        this._transitionOutFinishedTimeout = alt.setTimeout(() => {
+        this._transitionOutFinishedTimeout = setTimeout(() => {
             this._messageVisible = false;
             this._scaleform.recreate();
         }, this._transitionOutTimeMs);
@@ -61,7 +60,7 @@ export default class Message {
         this.SetTransitionOutTimer(transitionOutTime);
     }
     static SetTransitionOutTimer(time) {
-        this._transitionOutTimeout = alt.setTimeout(() => {
+        this._transitionOutTimeout = setTimeout(() => {
             this._transitionOutTimeout = null;
             this.TransitionOut();
         }, time);

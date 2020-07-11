@@ -1,11 +1,10 @@
-﻿import * as alt from 'alt-client';
-import HudColor from '../enums/HudColor';
+﻿import HudColor from '../enums/HudColor';
 import Message from './Message';
 
 export default class MidsizedMessage extends Message {
     public static Initialize(scaleForm: string, transitionOutAnimName: string) {
         super.Initialize(scaleForm, transitionOutAnimName);
-        alt.everyTick(() => this.Render());
+        setTick(() => this.Render());
     }
 
     public static ShowMidsizedMessage(title: string, message: string = "", time: number = 5000): void {

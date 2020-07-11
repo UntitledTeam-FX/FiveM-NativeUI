@@ -1,8 +1,7 @@
-import * as alt from 'alt-client';
 import game from 'natives';
 import Size from "./Size";
 import Text from '../modules/Text';
-const gameScreen = game.getActiveScreenResolution(0, 0);
+const gameScreen = GetActiveScreenResolution(0, 0);
 export default class Screen {
     static get ResolutionMaintainRatio() {
         const ratio = Screen.Width / Screen.Height;
@@ -11,7 +10,7 @@ export default class Screen {
     }
     static MousePosition(relative = false) {
         const res = Screen.ResolutionMaintainRatio;
-        const cursor = alt.getCursorPos();
+        const cursor = GetNuiCursorPosition();
         let [mouseX, mouseY] = [cursor.x, cursor.y];
         if (relative)
             [mouseX, mouseY] = [cursor.x / res.Width, cursor.y / res.Height];
@@ -27,28 +26,28 @@ export default class Screen {
             (mousePosition.Y > topLeft.Y && mousePosition.Y < topLeft.Y + boxSize.Height));
     }
     static GetTextWidth(text, font, scale) {
-        game.beginTextCommandGetWidth("CELL_EMAIL_BCON");
+        BeginTextCommandGetWidth("CELL_EMAIL_BCON");
         Text.AddLongString(text);
-        game.setTextFont(font);
-        game.setTextScale(1.0, scale);
-        const width = game.endTextCommandGetWidth(true);
+        SetTextFont(font);
+        SetTextScale(1.0, scale);
+        const width = EndTextCommandGetWidth(true);
         const res = Screen.ResolutionMaintainRatio;
         return res.Width * width;
     }
     static GetLineCount(text, position, font, scale, wrap) {
-        game.beginTextCommandLineCount("CELL_EMAIL_BCON");
+        BeginTextCommandLineCount("CELL_EMAIL_BCON");
         Text.AddLongString(text);
         const res = Screen.ResolutionMaintainRatio;
         const x = position.X / res.Width;
         const y = position.Y / res.Height;
-        game.setTextFont(font);
-        game.setTextScale(1.0, scale);
+        SetTextFont(font);
+        SetTextScale(1.0, scale);
         if (wrap > 0) {
             const start = position.X / res.Width;
             const end = start + (wrap / res.Width);
-            game.setTextWrap(x, end);
+            SetTextWrap(x, end);
         }
-        let lineCount = game.endTextCommandLineCount(x, y);
+        let lineCount = EndTextCommandLineCount(x, y);
         return lineCount;
     }
 }

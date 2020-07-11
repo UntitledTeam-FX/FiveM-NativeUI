@@ -22,13 +22,13 @@ export default class Text extends IElement {
         }
         const x = pos.X / 1280.0;
         const y = pos.Y / 720.0;
-        game.setTextFont(parseInt(font));
-        game.setTextScale(scale, scale);
-        game.setTextColour(color.R, color.G, color.B, color.A);
-        game.setTextCentre(centered);
-        game.beginTextCommandDisplayText("STRING");
+        SetTextFont(parseInt(font));
+        SetTextScale(scale, scale);
+        SetTextColour(color.R, color.G, color.B, color.A);
+        SetTextCentre(centered);
+        BeginTextCommandDisplayText("STRING");
         Text.AddLongString(caption);
-        game.endTextCommandDisplayText(x, y, 0);
+        EndTextCommandDisplayText(x, y, 0);
     }
     static AddLongString(text) {
         if (!text.length)
@@ -44,7 +44,7 @@ export default class Text extends IElement {
             else {
                 position = Math.min(maxStringLength, text.length - currentIndex);
             }
-            game.addTextComponentSubstringPlayerName(text.substr(currentIndex, position));
+            AddTextComponentSubstringPlayerName(text.substr(currentIndex, position));
         }
     }
 }
