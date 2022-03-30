@@ -1,9 +1,9 @@
 {
   "name": "@untitledteam-fx/fivem-nativeui",
-  "version": "1.4.6",
+  "version": "1.4.7",
   "description": "NativeUI for FiveM written in Javascript / TypeScript",
   "main": "dist/nativeui/nativeui.js",
-  "types": "dist/nativeui/types/NativeUi.d.ts",
+  "types": "dist/nativeui/NativeUi.d.ts",
   "private": false,
   "scripts": {
     "build": "rollup -c",
