@@ -1,9 +1,10 @@
 {
-  "name": "@PichotM/fivem-nativeui",
-  "version": "1.4.4",
+  "name": "@untitledteam-fx/fivem-nativeui",
+  "version": "1.4.6",
   "description": "NativeUI for FiveM written in Javascript / TypeScript",
-  "main": "dist/nativeui/nativeui.min.js",
+  "main": "dist/nativeui/nativeui.js",
   "types": "dist/nativeui/types/NativeUi.d.ts",
+  "private": false,
   "scripts": {
     "build": "rollup -c",
     "watch": "rollup -cw"
@@ -33,6 +34,6 @@
     "typescript": "^3.9.5"
   },
   "publishConfig": {
-    "registry": "https://npm.pkg.github.com"
+    "access": "public"
   }
 }
